@@ -10,31 +10,7 @@ import {
 import {Link} from 'react-router-dom'
 import AppIcon from "../images/logo192.png";
 import axios from "axios";
-
-const styles = {
-  form: {
-    textAlign: "center",
-  },
-  pageTitle: {
-    margin: "10px auto 10px auto",
-  },
-  image: {
-    margin: "20px auto 20px auto",
-  },
-  textField: {
-    margin: "10px auto 10px auto",
-  },
-  button: {
-    marginTop: 20,
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem'
-  },
-  progress: {
-    position: 'absolute'
-  }
-};
+import {styles} from '../util/theme'
 
 const Login = ({ classes, history }) => {
   const [email, setEmail] = useState("");
@@ -54,6 +30,7 @@ const Login = ({ classes, history }) => {
       .post("/login", userData)
       .then((res) => {
         console.log('abdadf',res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
         setLoading(false);
         history.push("/");
       })

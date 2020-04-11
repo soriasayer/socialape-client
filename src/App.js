@@ -6,23 +6,23 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
+import {appTheme} from './util/theme'
+import JwtDecode from "jwt-decode";
+import AuthRoute from "./util/AuthRoute";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
-      dark: "#002884",
-      contrastText: "#fff",
-    },
-    secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
-    },
-  },
-});
+const theme = createMuiTheme(appTheme);
+
+let authenticated
+const token = localStorage.FBIdToken
+if(token) {
+  const decodedToken = JwtDecode(token)
+  if(decodedToken.exp * 1000 < Date.now()){
+    window.location.href = '/login'
+    authenticated = false
+  } else {
+    authenticated = true
+  }
+}
 
 function App() {
   return (
@@ -33,8 +33,8 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
+              <AuthRoute path="/login" component={Login} authenticated={authenticated} />
+              <AuthRoute path="/signup" component={Signup} authenticated={authenticated} />
             </Switch>
           </div>
         </Router>
