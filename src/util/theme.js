@@ -13,7 +13,7 @@ export const appTheme = {
       contrastText: "#000",
     },
   },
-}
+};
 
 export const styles = {
   form: {
@@ -30,13 +30,13 @@ export const styles = {
   },
   button: {
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
   },
   customError: {
-    color: 'red',
-    fontSize: '0.8rem'
+    color: "red",
+    fontSize: "0.8rem",
   },
   progress: {
-    position: 'absolute'
-  }
-}
+    position: "absolute",
+  },
+};

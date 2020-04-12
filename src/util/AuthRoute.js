@@ -1,11 +1,13 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-const AuthRoute = ({component: Componet, authenticated, ...rest}) =>(
+const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
-  {...rest}
-  render={(props) => authenticated ? <Redirect to='/' /> : <Componet {...props}/>}
+    {...rest}
+    render={(props) =>
+      authenticated ? <Redirect to="/" /> : <Component {...props} />
+    }
   />
-)
+);
 
-export default AuthRoute
+export default AuthRoute;

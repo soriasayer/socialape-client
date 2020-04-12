@@ -5,17 +5,17 @@ import {
   Typography,
   TextField,
   Button,
-  CircularProgress
+  CircularProgress,
 } from "@material-ui/core";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import AppIcon from "../images/logo192.png";
 import axios from "axios";
-import {styles} from '../util/theme'
+import { styles } from "../util/theme";
 
 const Signup = ({ classes, history }) => {
   const [email, setEmail] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [handle, setHandle] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -28,13 +28,13 @@ const Signup = ({ classes, history }) => {
       email,
       password,
       confirmPassword,
-      handle
+      handle,
     };
     axios
       .post("/signup", newUserData)
       .then((res) => {
-        console.log('abdadf',res.data);
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
+        console.log("abdadf", res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         setLoading(false);
         history.push("/");
       })
@@ -102,7 +102,7 @@ const Signup = ({ classes, history }) => {
             fullWidth
           />
           {errors.general && (
-            <Typography variant='body2' className={classes.customError}>
+            <Typography variant="body2" className={classes.customError}>
               {errors.general}
             </Typography>
           )}
@@ -114,9 +114,13 @@ const Signup = ({ classes, history }) => {
             disabled={loading}
           >
             Signup
-            {loading && (<CircularProgress size={30} className={classes.progress} />)}
+            {loading && (
+              <CircularProgress size={30} className={classes.progress} />
+            )}
           </Button>
-          <div>Already have an account? login <Link to="/login">here</Link></div>
+          <div>
+            Already have an account? login <Link to="/login">here</Link>
+          </div>
         </form>
       </Grid>
       <Grid item sm />

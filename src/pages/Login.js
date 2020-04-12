@@ -1,44 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   withStyles,
   Grid,
   Typography,
   TextField,
   Button,
-  CircularProgress
+  CircularProgress,
 } from "@material-ui/core";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import AppIcon from "../images/logo192.png";
-import axios from "axios";
-import {styles} from '../util/theme'
+import { styles } from "../util/theme";
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions/userAction";
 
-const Login = ({ classes, history }) => {
+const Login = ({ classes, history, loginUser, user, UI }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
 
     const userData = {
       email,
       password,
     };
-    axios
-      .post("/login", userData)
-      .then((res) => {
-        console.log('abdadf',res.data);
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
-        setLoading(false);
-        history.push("/");
-      })
-      .catch((err) => {
-        setErrors(err.response.data);
-        setLoading(false);
-      });
+    loginUser(userData, history);
   };
+
+  useEffect(() => {
+    if(UI.errors) {
+      setErrors(UI.errors)
+    }
+
+  }, [UI])
 
   return (
     <Grid container className={classes.form}>
@@ -75,7 +70,7 @@ const Login = ({ classes, history }) => {
             fullWidth
           />
           {errors.general && (
-            <Typography variant='body2' className={classes.customError}>
+            <Typography variant="body2" className={classes.customError}>
               {errors.general}
             </Typography>
           )}
@@ -84,12 +79,16 @@ const Login = ({ classes, history }) => {
             variant="contained"
             color="primary"
             className={classes.button}
-            disabled={loading}
+            disabled={UI.loading}
           >
             Login
-            {loading && (<CircularProgress size={30} className={classes.progress} />)}
+            {UI.loading && (
+              <CircularProgress size={30} className={classes.progress} />
+            )}
           </Button>
-          <div>Don't have an account? signup <Link to="/signup">here</Link></div>
+          <div>
+            Don't have an account? signup <Link to="/signup">here</Link>
+          </div>
         </form>
       </Grid>
       <Grid item sm />
@@ -97,4 +96,18 @@ const Login = ({ classes, history }) => {
   );
 };
 
-export default withStyles(styles)(Login);
+const mapStateToprops = ({ user, UI }) => {
+  return {
+    user,
+    UI,
+  };
+};
+
+const mapActionsToProps = {
+  loginUser,
+};
+
+export default connect(
+  mapStateToprops,
+  mapActionsToProps
+)(withStyles(styles)(Login));
