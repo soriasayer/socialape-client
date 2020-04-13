@@ -4,6 +4,7 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
+  LOADING_USER,
 } from "../types";
 import Axios from "axios";
 
@@ -45,13 +46,14 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     });
 };
 
-export const logoutUser = () => {
+export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("FBIdToken");
   delete Axios.defaults.headers.common["Authorization"];
-  dispatchEvent({ type: SET_UNAUTHENTICATED });
+  dispatch({ type: SET_UNAUTHENTICATED });
 };
 
 export const getUserData = () => (dispatch) => {
+  dispatch({ type: LOADING_USER });
   Axios.get("/user")
     .then((res) => {
       dispatch({

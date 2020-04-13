@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
@@ -11,8 +11,8 @@ const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
   />
 );
 
-const mapStateToProps = ({user}) => ({
-  authenticated: user.authenticated
-})
+const mapStateToProps = ({ user }) => ({
+  authenticated: user.authenticated,
+});
 
 export default connect(mapStateToProps)(AuthRoute);
