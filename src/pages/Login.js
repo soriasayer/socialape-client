@@ -29,11 +29,10 @@ const Login = ({ classes, history, loginUser, user, UI }) => {
   };
 
   useEffect(() => {
-    if(UI.errors) {
-      setErrors(UI.errors)
+    if (UI.errors) {
+      setErrors(UI.errors);
     }
-
-  }, [UI])
+  }, [UI]);
 
   return (
     <Grid container className={classes.form}>

@@ -9,22 +9,28 @@ import Navbar from "./components/Navbar";
 import { appTheme } from "./util/theme";
 import JwtDecode from "jwt-decode";
 import AuthRoute from "./util/AuthRoute";
+import {SET_AUTHENTICATED} from './redux//types'
+import {logoutUser, getUserData} from './redux/actions/userAction'
+import {connect} from 'react-redux'
+import Axios from "axios";
 
 const theme = createMuiTheme(appTheme);
 
-let authenticated;
+function App({dispatch}) {
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = JwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
+    dispatch(logoutUser())
     window.location.href = "/login";
-    authenticated = false;
   } else {
-    authenticated = true;
+    dispatch({type: SET_AUTHENTICATED})
+    Axios.defaults.headers.common['Authorization'] = token
+    dispatch(getUserData())
   }
 }
 
-function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
@@ -35,12 +41,10 @@ function App() {
             <AuthRoute
               path="/login"
               component={Login}
-              authenticated={authenticated}
             />
             <AuthRoute
               path="/signup"
               component={Signup}
-              authenticated={authenticated}
             />
           </Switch>
         </div>
@@ -49,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, {logoutUser})(App);

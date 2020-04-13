@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   withStyles,
   Grid,
@@ -9,20 +9,19 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import AppIcon from "../images/logo192.png";
-import axios from "axios";
 import { styles } from "../util/theme";
+import { connect } from "react-redux";
+import { signupUser } from "../redux/actions/userAction";
 
-const Signup = ({ classes, history }) => {
+const Signup = ({ classes, history, signupUser, UI }) => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [handle, setHandle] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
 
     const newUserData = {
       email,
@@ -30,19 +29,14 @@ const Signup = ({ classes, history }) => {
       confirmPassword,
       handle,
     };
-    axios
-      .post("/signup", newUserData)
-      .then((res) => {
-        console.log("abdadf", res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        setLoading(false);
-        history.push("/");
-      })
-      .catch((err) => {
-        setErrors(err.response.data);
-        setLoading(false);
-      });
+    signupUser(newUserData, history);
   };
+
+  useEffect(() => {
+    if (UI.errors) {
+      setErrors(UI.errors);
+    }
+  }, [UI]);
 
   return (
     <Grid container className={classes.form}>
@@ -111,10 +105,10 @@ const Signup = ({ classes, history }) => {
             variant="contained"
             color="primary"
             className={classes.button}
-            disabled={loading}
+            disabled={UI.loading}
           >
             Signup
-            {loading && (
+            {UI.loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
@@ -128,4 +122,13 @@ const Signup = ({ classes, history }) => {
   );
 };
 
-export default withStyles(styles)(Signup);
+const mapStateToProps = ({ user, UI }) => {
+  return {
+    user,
+    UI,
+  };
+};
+
+export default connect(mapStateToProps, { signupUser })(
+  withStyles(styles)(Signup)
+);
