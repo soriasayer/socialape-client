@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import {
   withStyles,
-  Tooltip,
-  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -11,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { styles } from "../util/theme";
+import MyButton from "../util/MyButton";
 import { connect } from "react-redux";
 import { editUserDetails } from "../redux/actions/userAction";
 import { Edit } from "@material-ui/icons";
@@ -56,11 +55,13 @@ function EditDetail({ credential, classes, editUserDetails }) {
 
   return (
     <Fragment>
-      <Tooltip title="Edit details" placement="top">
-        <IconButton onClick={handleOpen} className={classes.editButton}>
-          <Edit color="primary" />
-        </IconButton>
-      </Tooltip>
+      <MyButton
+        tip="Edit details"
+        onClick={handleOpen}
+        btnClassName={classes.editButton}
+      >
+        <Edit color="primary" />
+      </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Edit your details</DialogTitle>
         <DialogContent>

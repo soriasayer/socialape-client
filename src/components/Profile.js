@@ -1,12 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  withStyles,
-  Button,
-  Paper,
-  Typography,
-  IconButton,
-  Tooltip,
-} from "@material-ui/core";
+import { withStyles, Button, Paper, Typography } from "@material-ui/core";
 import {
   LocationOn,
   CalendarToday,
@@ -18,6 +11,7 @@ import MuiLink from "@material-ui/core/Link";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { styles } from "../util/theme";
+import MyButton from "../util/MyButton";
 import dayjs from "dayjs";
 import { logoutUser, uploadImage } from "../redux/actions/userAction";
 import EditDetail from "./EditDetail";
@@ -61,11 +55,13 @@ const Profile = ({ classes, user, uploadImage, logoutUser }) => {
                 onChange={handleImageChage}
                 hidden="hidden"
               />
-              <Tooltip title="Edit profile picture" placement="top">
-                <IconButton onClick={handleEditPicture} className="button">
-                  <Edit color="primary" />
-                </IconButton>
-              </Tooltip>
+              <MyButton
+                tip="Edit profile picture"
+                onClick={handleEditPicture}
+                btnClassName="button"
+              >
+                <Edit color="primary" />
+              </MyButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -108,11 +104,9 @@ const Profile = ({ classes, user, uploadImage, logoutUser }) => {
                 Joined {dayjs(credential.createdAt).format("MMM YYYY")}{" "}
               </span>
             </div>
-            <Tooltip title="Logout" placement="top">
-              <IconButton onClick={handleLogout}>
-                <KeyboardReturn color="primary" />
-              </IconButton>
-            </Tooltip>
+            <MyButton tip="Logout" onClick={handleLogout}>
+              <KeyboardReturn color="primary" />
+            </MyButton>
             <EditDetail />
           </div>
         </Paper>
