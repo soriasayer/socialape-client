@@ -5,34 +5,43 @@ import {
   Paper,
   Typography,
   IconButton,
-  Tooltip
+  Tooltip,
 } from "@material-ui/core";
 import {
   LocationOn,
   CalendarToday,
   InsertLink,
   Edit,
+  KeyboardReturn,
 } from "@material-ui/icons";
 import MuiLink from "@material-ui/core/Link";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { styles } from "../util/theme";
 import dayjs from "dayjs";
-import {logoutUser, uploadImage} from '../redux/actions/userAction'
+import { logoutUser, uploadImage } from "../redux/actions/userAction";
+import EditDetail from "./EditDetail";
 
-function Profile({ classes, user, uploadImage }) {
+const Profile = ({ classes, user, uploadImage, logoutUser }) => {
   const { credential, authenticated, loading } = user;
 
   const handleImageChage = (event) => {
     const image = event.target.files[0];
-    const formData = new FormData()
-    formData.append('image', image, image.name)
-    uploadImage(formData)
+    console.log(image);
+    let formData = new FormData();
+    formData.append("image", image, image.name);
+    var options = { content: formData };
+    console.log(options.content);
+    uploadImage(formData);
   };
 
   const handleEditPicture = () => {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
+  };
+
+  const handleLogout = () => {
+    logoutUser();
   };
 
   const profileMarkup = () => {
@@ -52,7 +61,7 @@ function Profile({ classes, user, uploadImage }) {
                 onChange={handleImageChage}
                 hidden="hidden"
               />
-              <Tooltip title='Edit profile picture' placement='top'>
+              <Tooltip title="Edit profile picture" placement="top">
                 <IconButton onClick={handleEditPicture} className="button">
                   <Edit color="primary" />
                 </IconButton>
@@ -79,6 +88,7 @@ function Profile({ classes, user, uploadImage }) {
                   <span>{credential.location}</span>
                 </Fragment>
               )}
+              <hr />
               {credential.website && (
                 <Fragment>
                   <InsertLink color="primary" />
@@ -98,6 +108,12 @@ function Profile({ classes, user, uploadImage }) {
                 Joined {dayjs(credential.createdAt).format("MMM YYYY")}{" "}
               </span>
             </div>
+            <Tooltip title="Logout" placement="top">
+              <IconButton onClick={handleLogout}>
+                <KeyboardReturn color="primary" />
+              </IconButton>
+            </Tooltip>
+            <EditDetail />
           </div>
         </Paper>
       ) : (
@@ -131,15 +147,18 @@ function Profile({ classes, user, uploadImage }) {
   };
 
   return profileMarkup();
-}
+};
 
 const mapDispatchToProps = {
-uploadImage,
-logoutUser
-}
+  uploadImage,
+  logoutUser,
+};
 
 const mapStateToProps = ({ user }) => ({
   user,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Profile));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Profile));

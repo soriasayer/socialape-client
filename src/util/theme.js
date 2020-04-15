@@ -84,4 +84,7 @@ export const styles = {
       margin: "20px 10px",
     },
   },
+  editButton: {
+    float: "right",
+  },
 };
