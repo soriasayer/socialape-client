@@ -16,6 +16,17 @@ export const appTheme = {
 };
 
 export const styles = {
+  card: {
+    display: "flex",
+    marginBottom: 20,
+  },
+  images: {
+    minWidth: 200,
+  },
+  content: {
+    padding: 25,
+    objectFit: "cover",
+  },
   form: {
     textAlign: "center",
   },

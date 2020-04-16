@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/socialape-224d2/europe-west3/api"
+  "proxy": "https://europe-west3-socialape-224d2.cloudfunctions.net/api"
 }

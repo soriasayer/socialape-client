@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Scream from "../components/Scream";
 import Profile from "../components/Profile";
+import { connect } from "react-redux";
+import { getScreams } from "../redux/actions/dataAction";
 
-const Home = () => {
-  const [screams, setScreams] = useState([]);
-
-  const fetchStream = () => {
-    axios
-      .get("/screams")
-      .then((res) => {
-        setScreams(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
+const Home = ({ getScreams, data }) => {
   useEffect(() => {
-    fetchStream();
-  }, []);
+    getScreams();
+  }, [getScreams]);
 
   const recentScreamsMarkup = () => {
-    if (screams) {
+    const { screams, loading } = data;
+    if (!loading) {
       return screams.map((scream) => (
         <Scream key={scream.screamId} scream={scream} />
       ));
@@ -40,4 +31,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = ({ data }) => {
+  return { data };
+};
+
+export default connect(mapStateToProps, { getScreams })(Home);
