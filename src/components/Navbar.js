@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
-import { Add, Home, Notifications } from "@material-ui/icons";
+import { Home, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MyButton from "../util/MyButton";
+import PostScream from "./PostScream";
 
 const Navbar = ({ authenticated }) => {
   return (
@@ -11,9 +12,7 @@ const Navbar = ({ authenticated }) => {
       <Toolbar className="nav-container">
         {authenticated ? (
           <Fragment>
-            <MyButton tip="Post a Scream!">
-              <Add />
-            </MyButton>
+            <PostScream />
             <Link to="/">
               <MyButton tip="Home">
                 <Home />

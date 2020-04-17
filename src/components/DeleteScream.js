@@ -7,7 +7,6 @@ import {
   DialogActions,
 } from "@material-ui/core";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteScream } from "../redux/actions/dataAction";
 import { styles } from "../util/theme";

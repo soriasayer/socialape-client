@@ -16,7 +16,14 @@ import MyButton from "../util/MyButton";
 import { Chat, FavoriteBorder, Favorite } from "@material-ui/icons";
 import DeleteScream from "./DeleteScream";
 
-const Scream = ({ scream, user, likeScream, unlikeScream, classes, userCredential }) => {
+const Scream = ({
+  scream,
+  user,
+  likeScream,
+  unlikeScream,
+  classes,
+  userCredential,
+}) => {
   dayjs.extend(relativeTime);
 
   const { likes, authenticated, credential } = user;
@@ -61,7 +68,8 @@ const Scream = ({ scream, user, likeScream, unlikeScream, classes, userCredentia
   );
   const deletButton =
     authenticated && userHandle === credential.handle ? (
-      <DeleteScream screamId={screamId} />) : null
+      <DeleteScream screamId={screamId} />
+    ) : null;
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -99,7 +107,7 @@ const mapDispatchToProps = {
   unlikeScream,
 };
 
-const mapStateToProps = ({ user }) =>({user})
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(
   mapStateToProps,

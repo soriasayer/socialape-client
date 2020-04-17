@@ -17,7 +17,7 @@ export const appTheme = {
 
 export const styles = {
   card: {
-    position: 'relative',
+    position: "relative",
     display: "flex",
     marginBottom: 20,
   },
@@ -100,8 +100,19 @@ export const styles = {
     float: "right",
   },
   deleteBtn: {
-    position: 'absolute',
-    left: '92%',
-    top: '8%'
-  }
+    position: "absolute",
+    left: "92%",
+    top: "8%",
+  },
+  submitBtn: {
+    position: "relative",
+  },
+  progressSpinner: {
+    position: "absolute",
+  },
+  btnClose: {
+    position: "absolute",
+    left: "90%",
+    top: "8%",
+  },
 };
