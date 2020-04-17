@@ -17,6 +17,7 @@ export const appTheme = {
 
 export const styles = {
   card: {
+    position: 'relative',
     display: "flex",
     marginBottom: 20,
   },
@@ -98,4 +99,9 @@ export const styles = {
   editButton: {
     float: "right",
   },
+  deleteBtn: {
+    position: 'absolute',
+    left: '92%',
+    top: '8%'
+  }
 };
