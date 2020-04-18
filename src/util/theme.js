@@ -106,13 +106,29 @@ export const styles = {
   },
   submitBtn: {
     position: "relative",
+    float: "right",
+    marginTop: 10,
   },
   progressSpinner: {
     position: "absolute",
   },
   btnClose: {
     position: "absolute",
-    left: "90%",
-    top: "8%",
+    left: "91%",
+    top: "6%",
   },
+  invisibleSeparator: {
+    border: "none",
+    margin: 4,
+  },
+  profileImage: {
+      width: 200,
+      height: 200,
+      objectFit: "cover",
+      maxWidth: "100%",
+      borderRadius: "50%",
+  },
+  dialogContent: {
+    padding: 20
+  }
 };

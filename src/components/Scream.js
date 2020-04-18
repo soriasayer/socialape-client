@@ -15,6 +15,7 @@ import { likeScream, unlikeScream } from "../redux/actions/dataAction";
 import MyButton from "../util/MyButton";
 import { Chat, FavoriteBorder, Favorite } from "@material-ui/icons";
 import DeleteScream from "./DeleteScream";
+import ScreamDialog from "./ScreamDialog";
 
 const Scream = ({
   scream,
@@ -97,6 +98,7 @@ const Scream = ({
           <Chat color="primary" />
         </MyButton>
         <span>{commentCount} comments</span>
+        <ScreamDialog SId={screamId} userHandle={userHandle} />
       </CardContent>
     </Card>
   );

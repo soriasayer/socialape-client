@@ -11,10 +11,10 @@ import {
 import { styles } from "../util/theme";
 import MyButton from "../util/MyButton";
 import { connect } from "react-redux";
-import { postScream } from "../redux/actions/dataAction";
+import { postScream, clearErorros } from "../redux/actions/dataAction";
 import { Add, Close } from "@material-ui/icons";
 
-function PostScream({ UI, postScream, classes }) {
+function PostScream({ UI, postScream, classes, clearErorros }) {
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState("");
   const [errors, setErrors] = useState({});
@@ -30,11 +30,13 @@ function PostScream({ UI, postScream, classes }) {
     }
     if (!UI.errors && !UI.loading) {
       setBody("");
-      handleClose();
+      setOpen(false);
+      setErrors({});
     }
   }, [UI]);
 
   const handleClose = () => {
+    clearErorros();
     setOpen(false);
     setErrors({});
   };
@@ -92,6 +94,6 @@ function PostScream({ UI, postScream, classes }) {
 
 const mapStateToProps = ({ UI }) => ({ UI });
 
-export default connect(mapStateToProps, { postScream })(
+export default connect(mapStateToProps, { postScream, clearErorros })(
   withStyles(styles)(PostScream)
 );
