@@ -9,6 +9,7 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import User from "./pages/User";
 import { getUserData, logoutUser } from "./redux/actions/userAction";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
@@ -41,6 +42,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <AuthRoute path="/login" component={Login} />
               <AuthRoute path="/signup" component={Signup} />
+              <Route path="/users/:handle" component={User} />
             </Switch>
           </div>
         </Router>
