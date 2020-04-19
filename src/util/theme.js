@@ -115,7 +115,7 @@ export const styles = {
   btnClose: {
     position: "absolute",
     left: "90%",
-    top: "6%",
+    top: "1%",
   },
   invisibleSeparator: {
     border: "none",

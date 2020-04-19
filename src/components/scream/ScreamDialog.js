@@ -11,13 +11,14 @@ import dayjs from "dayjs";
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getScream } from "../../redux/actions/dataAction";
+import { clearErorros, getScream } from "../../redux/actions/dataAction";
 import MyButton from "../../util/MyButton";
 import { styles } from "../../util/theme";
+import CommentForm from "./CommentForm";
 import Comments from "./Comments";
 import LikeButton from "./LikeButton";
 
-function ScreamDialog({ classes, getScream, scream, UI, SId }) {
+function ScreamDialog({ classes, getScream, scream, UI, SId, clearErorros }) {
   const {
     screamId,
     body,
@@ -34,6 +35,11 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
   const handleOpen = () => {
     setOpen(true);
     getScream(SId);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    clearErorros();
   };
 
   const dialogMarkup = () => {
@@ -76,6 +82,7 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
             <span>{commentCount} comments</span>
           </Grid>
           <hr className={classes.visibleSeparator} />
+          <CommentForm screamId={screamId} />
           <Comments comments={comments} />
         </Grid>
       );
@@ -91,16 +98,11 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
       >
         <UnfoldMore color="primary" />
       </MyButton>
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        fullWidth
-        maxWidth="sm"
-      >
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton
           tip="Close"
           btnClassName={classes.btnClose}
-          onClick={() => setOpen(false)}
+          onClick={handleClose}
         >
           <Close />
         </MyButton>
@@ -119,6 +121,6 @@ const mapStateToProps = ({ data, UI }) => {
   };
 };
 
-export default connect(mapStateToProps, { getScream })(
+export default connect(mapStateToProps, { getScream, clearErorros })(
   withStyles(styles)(ScreamDialog)
 );
