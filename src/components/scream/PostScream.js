@@ -1,18 +1,18 @@
-import React, { useState, useEffect, Fragment } from "react";
 import {
-  withStyles,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
   Button,
   CircularProgress,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  withStyles,
 } from "@material-ui/core";
-import { styles } from "../util/theme";
-import MyButton from "../util/MyButton";
-import { connect } from "react-redux";
-import { postScream, clearErorros } from "../redux/actions/dataAction";
 import { Add, Close } from "@material-ui/icons";
+import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { clearErorros, postScream } from "../../redux/actions/dataAction";
+import MyButton from "../../util/MyButton";
+import { styles } from "../../util/theme";
 
 function PostScream({ UI, postScream, classes, clearErorros }) {
   const [open, setOpen] = useState(false);

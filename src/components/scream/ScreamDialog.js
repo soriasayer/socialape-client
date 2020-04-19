@@ -1,19 +1,21 @@
-import React, { Fragment, useState } from "react";
 import {
-  withStyles,
-  DialogContent,
-  Dialog,
   CircularProgress,
+  Dialog,
+  DialogContent,
   Grid,
   Typography,
+  withStyles,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Chat, Close, UnfoldMore } from "@material-ui/icons";
 import dayjs from "dayjs";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { getScream } from "../redux/actions/dataAction";
-import { styles } from "../util/theme";
-import MyButton from "../util/MyButton";
-import { UnfoldMore, Close } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import { getScream } from "../../redux/actions/dataAction";
+import MyButton from "../../util/MyButton";
+import { styles } from "../../util/theme";
+import Comments from "./Comments";
+import LikeButton from "./LikeButton";
 
 function ScreamDialog({ classes, getScream, scream, UI, SId }) {
   const {
@@ -24,6 +26,7 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
     commentCount,
     likeCount,
     userImage,
+    comments,
   } = scream;
 
   const [open, setOpen] = useState(false);
@@ -35,10 +38,14 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
 
   const dialogMarkup = () => {
     if (UI.loading) {
-      return <CircularProgress size={150} />;
+      return (
+        <div className={classes.spinnerDiv}>
+          <CircularProgress size={150} thickness={2} />;
+        </div>
+      );
     } else {
       return (
-        <Grid container spacing={16}>
+        <Grid container>
           <Grid item sm={5}>
             <img
               src={userImage}
@@ -61,7 +68,15 @@ function ScreamDialog({ classes, getScream, scream, UI, SId }) {
             </Typography>
             <hr className={classes.invisibleSeparator} />
             <Typography variant="body1">{body}</Typography>
+            <LikeButton screamId={screamId} />
+            <span>{likeCount} Likes</span>
+            <MyButton tip="comments">
+              <Chat color="primary" />
+            </MyButton>
+            <span>{commentCount} comments</span>
           </Grid>
+          <hr className={classes.visibleSeparator} />
+          <Comments comments={comments} />
         </Grid>
       );
     }

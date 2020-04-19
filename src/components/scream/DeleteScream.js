@@ -1,16 +1,16 @@
-import React, { Fragment, useState } from "react";
 import {
-  withStyles,
   Button,
   Dialog,
-  DialogTitle,
   DialogActions,
+  DialogTitle,
+  withStyles,
 } from "@material-ui/core";
 import { DeleteOutline } from "@material-ui/icons";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { deleteScream } from "../redux/actions/dataAction";
-import { styles } from "../util/theme";
-import MyButton from "../util/MyButton";
+import { deleteScream } from "../../redux/actions/dataAction";
+import MyButton from "../../util/MyButton";
+import { styles } from "../../util/theme";
 
 function DeleteScream({ classes, deleteScream, screamId }) {
   const [open, setOpen] = useState(false);

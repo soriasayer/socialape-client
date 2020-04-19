@@ -114,7 +114,7 @@ export const styles = {
   },
   btnClose: {
     position: "absolute",
-    left: "91%",
+    left: "90%",
     top: "6%",
   },
   invisibleSeparator: {
@@ -122,13 +122,36 @@ export const styles = {
     margin: 4,
   },
   profileImage: {
-      width: 200,
-      height: 200,
-      objectFit: "cover",
-      maxWidth: "100%",
-      borderRadius: "50%",
+    width: 200,
+    height: 200,
+    objectFit: "cover",
+    maxWidth: "100%",
+    borderRadius: "50%",
   },
   dialogContent: {
-    padding: 20
-  }
+    padding: 20,
+  },
+  expandBtn: {
+    position: "absolute",
+    left: "92%",
+  },
+  spinnerDiv: {
+    textAlign: "center",
+    marginTop: 50,
+    marginBottom: 50,
+  },
+  visibleSeparator: {
+    width: "100%",
+    borderBottom: "1px, solid, rgba(0,0,0,0.1)",
+    marginBottom: 20,
+  },
+  commentImg: {
+    objectFit: "cover",
+    maxWidth: "100%",
+    borderRadius: "50%",
+    height: 100,
+  },
+  commentData: {
+    marginLeft: 20,
+  },
 };

@@ -1,19 +1,19 @@
-import React, { Fragment } from "react";
-import { withStyles, Button, Paper, Typography } from "@material-ui/core";
-import {
-  LocationOn,
-  CalendarToday,
-  InsertLink,
-  Edit,
-  KeyboardReturn,
-} from "@material-ui/icons";
+import { Button, Paper, Typography, withStyles } from "@material-ui/core";
 import MuiLink from "@material-ui/core/Link";
+import {
+  CalendarToday,
+  Edit,
+  InsertLink,
+  KeyboardReturn,
+  LocationOn,
+} from "@material-ui/icons";
+import dayjs from "dayjs";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { styles } from "../util/theme";
-import MyButton from "../util/MyButton";
-import dayjs from "dayjs";
-import { logoutUser, uploadImage } from "../redux/actions/userAction";
+import { logoutUser, uploadImage } from "../../redux/actions/userAction";
+import MyButton from "../../util/MyButton";
+import { styles } from "../../util/theme";
 import EditDetail from "./EditDetail";
 
 const Profile = ({ classes, user, uploadImage, logoutUser }) => {

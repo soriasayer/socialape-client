@@ -1,18 +1,18 @@
-import React, { useState, useEffect, Fragment } from "react";
 import {
-  withStyles,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-  DialogActions,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  withStyles,
 } from "@material-ui/core";
-import { styles } from "../util/theme";
-import MyButton from "../util/MyButton";
-import { connect } from "react-redux";
-import { editUserDetails } from "../redux/actions/userAction";
 import { Edit } from "@material-ui/icons";
+import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { editUserDetails } from "../../redux/actions/userAction";
+import MyButton from "../../util/MyButton";
+import { styles } from "../../util/theme";
 
 function EditDetail({ credential, classes, editUserDetails }) {
   const [bio, setBio] = useState("");

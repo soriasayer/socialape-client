@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Button, Toolbar } from "@material-ui/core";
 import { Home, Notifications } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import MyButton from "../util/MyButton";
-import PostScream from "./PostScream";
+import { Link } from "react-router-dom";
+import MyButton from "../../util/MyButton";
+import PostScream from "../scream/PostScream";
 
 const Navbar = ({ authenticated }) => {
   return (

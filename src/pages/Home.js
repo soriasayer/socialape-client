@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import Scream from "../components/Scream";
-import Profile from "../components/Profile";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import Profile from "../components/profile/Profile";
+import Scream from "../components/scream/Scream";
 import { getScreams } from "../redux/actions/dataAction";
 
 const Home = ({ getScreams, data }) => {
