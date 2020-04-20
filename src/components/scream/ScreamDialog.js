@@ -1,11 +1,4 @@
-import {
-  CircularProgress,
-  Dialog,
-  DialogContent,
-  Grid,
-  Typography,
-  withStyles,
-} from "@material-ui/core";
+import { CircularProgress, Dialog, DialogContent, Grid, Typography, withStyles } from "@material-ui/core";
 import { Chat, Close, UnfoldMore } from "@material-ui/icons";
 import dayjs from "dayjs";
 import React, { Fragment, useState } from "react";
@@ -18,7 +11,15 @@ import CommentForm from "./CommentForm";
 import Comments from "./Comments";
 import LikeButton from "./LikeButton";
 
-function ScreamDialog({ classes, getScream, scream, UI, SId, clearErorros }) {
+function ScreamDialog({
+  classes,
+  getScream,
+  scream,
+  UI,
+  SId,
+  clearErorros,
+}) {
+
   const {
     screamId,
     body,

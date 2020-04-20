@@ -61,7 +61,6 @@ function CommentForm({
 }
 
 const mapStateToProps = ({ UI, user }) => {
-  console.log(user);
   return {
     UI,
     authenticated: user.authenticated,

@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  withStyles,
-} from "@material-ui/core";
+import { Card, CardContent, CardMedia, Typography, withStyles } from "@material-ui/core";
 import { Chat } from "@material-ui/icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -17,7 +11,7 @@ import DeleteScream from "./DeleteScream";
 import LikeButton from "./LikeButton";
 import ScreamDialog from "./ScreamDialog";
 
-const Scream = ({ scream, user, classes, userCredential }) => {
+const Scream = ({ scream, user, classes, userCredential, openDialog }) => {
   dayjs.extend(relativeTime);
 
   const { authenticated, credential } = user;
@@ -62,7 +56,9 @@ const Scream = ({ scream, user, classes, userCredential }) => {
           <Chat color="primary" />
         </MyButton>
         <span>{commentCount} comments</span>
-        <ScreamDialog SId={screamId} userHandle={userHandle} />
+        <ScreamDialog
+          SId={screamId}
+        />
       </CardContent>
     </Card>
   );

@@ -43,6 +43,7 @@ function App() {
               <AuthRoute path="/login" component={Login} />
               <AuthRoute path="/signup" component={Signup} />
               <Route path="/users/:handle" component={User} />
+              <Route path="/users/:handle/scream/:screamId" component={User} />
             </Switch>
           </div>
         </Router>

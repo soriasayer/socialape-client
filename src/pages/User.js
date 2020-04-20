@@ -7,24 +7,25 @@ import Scream from "../components/scream/Scream";
 import { getUserData } from "../redux/actions/dataAction";
 
 function User({ getUserData, data, match }) {
-  const handle = match.params.handle;
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState(null);
 
-  const fetchUserData = () => {
-    getUserData(handle);
-    axios
-      .get(`/user/${handle}`)
-      .then((res) => {
-        setProfile(res.data.user);
-      })
-      .catch((err) => console.log(err));
-  };
+  const handle = match.params.handle;
 
   useEffect(() => {
-    fetchUserData();
-  }, [handle]);
+    async function fetchUserData() {
+      getUserData(handle);
 
-  const screamMarkup = () => {
+      await axios
+        .get(`/user/${handle}`)
+        .then((res) => {
+          setProfile(res.data.user);
+        })
+        .catch((err) => console.log(err));
+    }
+    fetchUserData();
+  }, [handle, getUserData]);
+
+    const screamMarkup = () => {
     const { screams, loading } = data;
     if (loading) {
       return <p>Loading data...</p>;
@@ -36,6 +37,7 @@ function User({ getUserData, data, match }) {
       ));
     }
   };
+
   return (
     <Grid container spacing={10}>
       <Grid item sm={8} xs={12}>
