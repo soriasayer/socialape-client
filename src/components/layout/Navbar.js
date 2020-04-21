@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import MyButton from "../../util/MyButton";
 import PostScream from "../scream/PostScream";
-import Notifications from './Notifications';
+import Notifications from "./Notifications";
 
 const Navbar = ({ authenticated }) => {
   return (
@@ -19,7 +19,7 @@ const Navbar = ({ authenticated }) => {
                 <Home />
               </MyButton>
             </Link>
-              <Notifications />
+            <Notifications />
           </Fragment>
         ) : (
           <Fragment>

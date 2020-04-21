@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Profile from "../components/profile/Profile";
 import Scream from "../components/scream/Scream";
 import { getScreams } from "../redux/actions/dataAction";
+import ScreamSkeleton from "../util//ScreamSkeleton";
 
 const Home = ({ getScreams, data }) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const Home = ({ getScreams, data }) => {
       return screams.map((scream) => (
         <Scream key={scream.screamId} scream={scream} />
       ));
-    } else return <p>Loading...</p>;
+    } else return <ScreamSkeleton />;
   };
 
   return (

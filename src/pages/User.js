@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import StaticProfile from "../components/profile/StaticProfile";
 import Scream from "../components/scream/Scream";
 import { getUserData } from "../redux/actions/dataAction";
+import ScreamSkeleton from "../util//ScreamSkeleton";
 
 function User({ getUserData, data, match }) {
   const [profile, setProfile] = useState(null);
@@ -25,10 +26,10 @@ function User({ getUserData, data, match }) {
     fetchUserData();
   }, [handle, getUserData]);
 
-    const screamMarkup = () => {
+  const screamMarkup = () => {
     const { screams, loading } = data;
     if (loading) {
-      return <p>Loading data...</p>;
+      return <ScreamSkeleton />;
     } else if (screams === null) {
       return <p>No scream from this user</p>;
     } else {

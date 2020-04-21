@@ -1,4 +1,10 @@
-import { Card, CardContent, CardMedia, Typography, withStyles } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
 import { Chat } from "@material-ui/icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -56,9 +62,7 @@ const Scream = ({ scream, user, classes, userCredential, openDialog }) => {
           <Chat color="primary" />
         </MyButton>
         <span>{commentCount} comments</span>
-        <ScreamDialog
-          SId={screamId}
-        />
+        <ScreamDialog SId={screamId} />
       </CardContent>
     </Card>
   );

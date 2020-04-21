@@ -1,4 +1,12 @@
-import { LIKE_SCREAM, LOADING_USER, MARK_NOTIFICATIONS_READ, SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER, UNLIKE_SCREAM } from "../types";
+import {
+  LIKE_SCREAM,
+  LOADING_USER,
+  MARK_NOTIFICATIONS_READ,
+  SET_AUTHENTICATED,
+  SET_UNAUTHENTICATED,
+  SET_USER,
+  UNLIKE_SCREAM,
+} from "../types";
 
 const initialState = {
   authenticated: false,
@@ -46,11 +54,11 @@ export default function (state = initialState, action) {
           (like) => like.screamId !== action.payload.screamId
         ),
       };
-      case MARK_NOTIFICATIONS_READ:
-      state.notifications.forEach(notification => (notification.read = true))
-      return{
+    case MARK_NOTIFICATIONS_READ:
+      state.notifications.forEach((notification) => (notification.read = true));
+      return {
         ...state,
-      }
+      };
     default:
       return state;
   }
