@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser, uploadImage } from "../../redux/actions/userAction";
 import MyButton from "../../util/MyButton";
+import ProfileSkeleton from "../../util/ProfileSkeleton";
 import { styles } from "../../util/theme";
 import EditDetail from "./EditDetail";
 
@@ -136,7 +137,7 @@ const Profile = ({ classes, user, uploadImage, logoutUser }) => {
         </Paper>
       )
     ) : (
-      <p>Loading...</p>
+      <ProfileSkeleton />
     );
   };
 
